@@ -10,13 +10,21 @@ const routes: Routes = [
       {
         path: 'categorias', 
         loadChildren: () => import('../categorias/categorias-module')
-        .then(m => m.CategoriasModule)
+        .then(m => m.CategoriasModule),
+        pathMatch: 'full'
       },
       {
         path: 'produtos', 
         loadChildren: () => import('../produtos/produtos-module')
-        .then(m => m.ProdutosModule)
+        .then(m => m.ProdutosModule),
+        pathMatch: 'full'
       },
+      {
+        path: 'galeria', 
+        loadChildren: () => import('../galeria/galeria-module')
+        .then(m => m.GaleriaModule),
+        pathMatch: 'full'
+      }
   ]
   }
 ];
