@@ -1,1 +1,36 @@
-<p>categoria works!</p>
+<div class="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-lg mt-6">
+  <h2 class="text-2xl font-semibold text-gray-700 mg-4">Nova Categoria</h2>
+  <hr class="border-t border-gray-300 opacity-50 mb-6">
+  <form id="categoriaForm" [formGroup]="camposForm" (ngSubmit)="salvar()">
+        <!--campo nome-->
+        <div class="mb-4">
+            <label for="name" class="block text-gray-600 font-medium mb-2">Name:</label>
+            <input type="text" id="name" name="name" 
+                formControlName="name"
+                placeholder="ex: Restaurante, praias" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400" required>
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('name')">
+                    Campo obrigatório
+                </span>
+        </div>
+        <!--campo descricao-->
+        <!-- <div class="mb-4">
+            <label for="nome" class="block text-gray-600 font-medium mb-2">Descrição:</label>
+            <textarea id="descricao" name="descricao" 
+                formControlName="descricao"
+                rows="4" 
+                placeholder="Descreva a categoria" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400" required>
+            </textarea>
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('descricao')">
+                    Campo obrigatório
+                </span>
+        </div> -->
+
+        <button type="submit"
+            class="w-full bg-blue-600 text-white font-semibold p-3 rounded hover:bg-blue-700">
+            Salvar
+        </button>
+  </form>
+
+</div>
