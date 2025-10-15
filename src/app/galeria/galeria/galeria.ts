@@ -14,6 +14,8 @@ export class Galeria implements OnInit {
 
   products: Produto[] = [];
   categories: Categoria[] = [];
+  selectedCategory: string = '';
+  productName: string = '';
 
   constructor(
     private categoryService: CategoriaService, 
@@ -25,6 +27,11 @@ export class Galeria implements OnInit {
     .subscribe(categories => this.categories = categories);
 
     this.productService.obterTodos()
+    .subscribe(products => this.products = products);
+  }
+
+  filtrar(): void {
+    this.productService.obterPorFiltros(this.productName, this.selectedCategory)
     .subscribe(products => this.products = products);
   }
 }

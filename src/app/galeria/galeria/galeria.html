@@ -1,22 +1,31 @@
 <!--Filtros-->
-<div class="p-4 bg-white shadow">
-    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-        <input type="text" placeholder="Buscar produtos..."
-            class="w-full border border-gray-300 p-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
-        <select class="w-full border border-gray-300 p-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
-            <option value="">Todas as categorias</option>
-            <option *ngFor="let category of categories" [value]="category.id">
-                {{ category.name }}
-            </option>
-        </select>
+<form #frm="ngForm" >
+    <div class="p-4 bg-white shadow">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+            <input type="text" 
+                [(ngModel)]="productName" 
+                name="productName"
+                placeholder="Buscar produtos..."
+                class="w-full border border-gray-300 p-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
+            <select 
+                [(ngModel)]="selectedCategory" 
+                name="selectedCategory"
+                class="w-full border border-gray-300 p-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
+                <option value="">Todas as categorias</option>
+                <option *ngFor="let category of categories" [value]="category.id">
+                    {{ category.name }}
+                </option>
+            </select>
+            <button (submit)="filtar()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">
+                Pesquisar
+            </button>
+        </div>
     </div>
-</div>
-
+</form>
 
 <!--List products-->
 <div id="productList" class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div *ngFor="let product of products" 
-    class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div *ngFor="let product of products" class="bg-white rounded-lg shadow-lg overflow-hidden">
         <img [src]="product.Image" alt="{{ product.Name }}" class="w-full h-48 object-cover">
         <div class="p-4">
             <h3 class="text-lg font-semibold text-gray-800">{{ product.Name }}</h3>
