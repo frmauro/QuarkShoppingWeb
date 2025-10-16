@@ -1,0 +1,43 @@
+<div
+    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white min-h-screen flex flex-col justify-center items-center flex flex-col justify-center items-center">
+    <div class="text-center p-6">
+        <h1 class="text-4xl font-bold mb-4">Welcome to Our Shopping Application</h1>
+        <p class="text-lg mb-6">Your gateway to seamless experiences.</p>
+
+
+        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="logar()" >
+            <h2>Login</h2>
+
+            <div>
+                <label>Email</label>
+                <input type="email" formControlName="email" />
+                <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                    Email inválido
+                </small>
+            </div>
+
+            <div>
+                <label>Senha</label>
+                <input type="password" formControlName="password" />
+                <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                    Mínimo de 6 caracteres
+                </small>
+            </div>
+
+            <button type="submit" [disabled]="loading || loginForm.invalid">
+                {{ loading ? 'Entrando...' : 'Entrar' }}
+            </button>
+
+            <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+        </form>
+
+        <!-- <button (click)="navegar()" *ngIf="isLoggedIn()"
+            class="bg-white text-blue-400 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 flex space-x-3 items-center">
+            Hello, I'm a {{profile?.name}} click here to start shopping!
+        </button>
+        <button (click)="logar()" *ngIf="!isLoggedIn()"
+            class="bg-white text-blue-400 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 flex space-x-3 items-center">
+            Hello, click here to loggin in shopping!
+        </button> -->
+    </div>
+</div>
