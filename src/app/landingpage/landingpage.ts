@@ -35,6 +35,9 @@ export class Landingpage {
   }
 
   logar(): void {
+
+    //console.log('login:  ', this.loginForm.value);
+    
     if (this.loginForm.invalid) return;
     const { email, password } = this.loginForm.value;
 
@@ -42,6 +45,7 @@ export class Landingpage {
       next: () => {
         this.loading = false;
         console.log('Login realizado com sucesso!');
+        this.navegar();
       },
       error: (err) => {
         this.loading = false;

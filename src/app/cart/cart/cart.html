@@ -1,0 +1,84 @@
+<div class="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-lg mt-6">
+
+    <h2 class="text-2xl font-semibold text-gray-700 mg-4">Carrinho de Compras</h2>
+    <hr class="border-t border-gray-300 opacity-50 mb-6">
+
+    <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <label class="block text-gray-600 font-medium mb-2">Produto:</label>
+            <input type="text" formControlName="nameProduct" />
+        </div>
+
+        <div >
+            <label class="block text-gray-600 font-medium mb-2">Preço:</label>
+            <input type="number" formControlName="price" step="0.01" />
+        </div>
+
+        <div >
+            <label class="block text-gray-600 font-medium mb-2">Quantidade:</label>
+            <input type="number" formControlName="quantity" min="1" />
+        </div>
+
+        <button type="submit" 
+            class="w-full bg-blue-600 text-white font-semibold p-3 rounded hover:bg-blue-700"
+            [disabled]="itemForm.invalid">
+            Adicionar
+        </button>
+
+        </div>
+
+    </form>
+
+    <hr>
+
+    <div class="mb-4">
+        <button routerLink="/paginas/galeria" class="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-3 py-2 rounded hover:bg-gray-300">
+            ← Voltar para Galeria
+        </button>
+    </div>
+
+    <div class="relative overflow-x-auto">
+    <table *ngIf="cart.items.length > 0">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cart.items">
+                <td>{{ item.nameProduct }}</td>
+                <td>{{ item.price | currency:'BRL' }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price * item.quantity | currency:'BRL' }}</td>
+                <td><button (click)="removeItem(item.id)">Remover</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <p *ngIf="cart.items.length === 0">Nenhum item no carrinho.</p>
+
+    <hr>
+
+    <h3>Total: {{ cart.totalPrice | currency:'BRL' }}</h3>
+    <button 
+        (click)="finalizeCart()" 
+        [disabled]="cart.items.length === 0 || cart.status === 1" 
+        class="w-full bg-blue-600 text-white font-semibold p-3 rounded hover:bg-blue-700"
+        >
+        Finalizar Compra
+    </button>
+
+    <p *ngIf="cart.status === 1" style="color: green;">
+        ✅ Carrinho finalizado!
+    </p>
+
+
+</div>

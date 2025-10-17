@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
+  private apiUrl = 'http://127.0.0.1:5237';
+
   constructor(private http: HttpClient) { }
 
   obterTodos(): Observable<Produto[]> {
-    return this.http.get<Produto[]>('/api/products');
+    return this.http.get<Produto[]>(`${this.apiUrl}/api/products`);
   }
 
   obterPorId(id: number): Observable<Produto> {
-    return this.http.get<Produto>(`/api/products/${id}`);
+    return this.http.get<Produto>(`${this.apiUrl}/api/products/${id}`);
   }
 
   obterPorFiltros(name: string, categoria: string): Observable<Produto[]> {

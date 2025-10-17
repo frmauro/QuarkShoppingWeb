@@ -10,7 +10,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
 
   private router: Router = Inject(Router);
-  private apiUrl = 'http://localhost:5047/api/auth';
+  private apiUrl = 'http://127.0.0.1:5047/api/auth';
   private tokenKey = 'access_token';
   
 

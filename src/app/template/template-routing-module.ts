@@ -24,6 +24,12 @@ const routes: Routes = [
         loadChildren: () => import('../galeria/galeria-module')
         .then(m => m.GaleriaModule),
         pathMatch: 'full'
+      },
+      {
+        path: 'cart', 
+        loadChildren: () => import('../cart/cart-module')
+        .then(m => m.CartModule),
+        pathMatch: 'full'
       }
   ]
   }

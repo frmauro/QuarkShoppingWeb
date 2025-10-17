@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class CategoriaService {
 
+  private apiUrl = 'http://127.0.0.1:5237';
+
   constructor(private http: HttpClient) { }
 
   salvar(categoria: Categoria): Observable<Categoria> {
-    return this.http.post<Categoria>('/api/categorias', categoria);
+    return this.http.post<Categoria>(`${this.apiUrl}/api/Categories`, categoria);
   }
 
   obterTodos(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>('/api/categorias');
+    return this.http.get<Categoria[]>(`${this.apiUrl}/api/Categories`);
   }
 
 }
